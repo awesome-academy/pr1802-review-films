@@ -1,0 +1,20 @@
+<%= form_for [:admin, @user] do |f| %>
+  <div class="row">
+    <div class = "col-md-12">
+      <div class = "block-section">
+        <h3>Name</h3>
+        <%= f.text_field :name, class: "form-control",
+          placeholder: "Enter user name"%>
+        <h3>Email</h3>
+        <%= f.email_field :email, class: "form-control",
+          placeholder: "Enter email" %>
+      </div>
+      <div class = "block-section">
+        <h3></h3>
+        <%= f.password_field :password, class: "form-control",
+          placeholder: "Enter password" %>
+      </div>
+      <%= f.submit yield(:btn_title), class: "btn btn-default" %>
+    </div>
+  </div>
+<% end %>

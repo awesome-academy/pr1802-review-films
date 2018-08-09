@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="block-section">
+      <h3>Name</h3>
+      <%= @film.name %>
+    </div>
+    <div class="block-section">
+      <h3>Review</h3>
+      <%= if @film.review
+            link_to @film.review.title, admin_review_path(@film.review)
+          else
+            link_to "Write review", new_admin_film_review_path(@film)
+          end %>
+    </div>
+  </div>
+</div>

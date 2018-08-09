@@ -1,5 +1,4 @@
-class Admin::CategoriesController < ApplicationController
-  layout "admin"
+class Admin::CategoriesController < AdminController
   before_action :find_category, only: [:edit, :update, :destroy]
 
   def index

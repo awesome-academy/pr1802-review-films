@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
-  root "pages#home"
   namespace :admin do
-    get "/" => "users#index"
+    get "/", to: "users#index"
+    resources :users
+    resources :films do
+      resources :reviews, only: [:new, :create]
+    end
     resources :categories
-    resources :films
+    resources :reviews, except: [:new, :create]
   end
+  root "pages#home"
 
   get "login", to: "sessions#new"
   post "login", to: "sessions#create"

@@ -32,10 +32,19 @@
         </div>
         <div class="col-md-3 align-self-center">
           <div class="header-right">
-            <span><i class="far fa-user"></i> Welcome
-              <%= logged_in? ? link_to(current_user.name, current_user) : "Guest" %>
+            <span>
+              <i class="far fa-user"></i>
+              <% if user_signed_in? %>
+                Welcome <%= link_to(current_user.name, current_user) %>
             </span>
-            <%= logged_in? ? link_to("Logout", logout_path, method: :delete) : link_to("Login", login_path) %>
+            <%= link_to("Admin Panel", admin_path) if current_user.admin? %>
+            <%= link_to("Logout", logout_path, method: :delete) %>
+          <% else %>
+            <span>
+              Welcome Guest
+            </span>
+            <%= link_to "Login", login_path %>
+          <% end %>
           </div>
         </div>
       </div>

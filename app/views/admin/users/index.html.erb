@@ -1,1 +1,28 @@
-<h1>Index</h1>
+<table class="table cat-table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >#</th>
+      <th scope="col" >Name</th>
+      <th scope="col" >Email</th>
+      <th scope="col" >Action</th>
+      <th scope="col" >Join date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.name %> <%= "[Admin]" if user.admin? %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= link_to "Profile", admin_user_path(user) %> |
+          <%= link_to "Edit", edit_admin_user_path(user) %> |
+          <%= link_to "Delete", admin_user_path(user), method: :delete,
+          data: { confirm: "Are you sure ?" } %>
+        </td>
+        <td><%= user.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users %>
