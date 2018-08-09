@@ -5,8 +5,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
+    <%= stylesheet_link_tag "application", media: "all",
+      "data-turbolinks-track": "reload" %>
+    <%= javascript_include_tag "application",
+      "data-turbolinks-track": "reload" %>
   </head>
 
   <body>
@@ -15,10 +17,15 @@
       <div class="row">
         <%= render ("layouts/admin/sidebar")  %>
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <% flash.each do |message_type, message| %>
+          <div class="col-md-12">
+            <%= content_tag :div, message,
+              class: "alert alert-#{message_type}" %>
+          </div>
+        <% end %>
         <%= yield %>
         </main>
       </div>
     </div>
-
   </body>
 </html>

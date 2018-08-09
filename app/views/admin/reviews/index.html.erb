@@ -1,0 +1,27 @@
+<table class="table cat-table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >#</th>
+      <th scope="col" >Title</th>
+      <th scope="col" >Film</th>
+      <th scope="col" >Action</th>
+      <th scope="col" >Created date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.id %></td>
+        <td><%= link_to review.title, admin_review_path(review) %></td>
+        <td><%= link_to review.film.name, admin_film_path(review.film) %></td>
+        <td>
+          <%= link_to "Edit", edit_admin_review_path(review) %> |
+          <%= link_to "Delete", admin_review_path(review), method: :delete,
+          data: { confirm: "Are you sure ?" } %>
+        </td>
+        <td><%= review.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @reviews %>

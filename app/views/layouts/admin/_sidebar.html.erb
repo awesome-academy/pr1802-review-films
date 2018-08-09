@@ -2,7 +2,6 @@
   <div class="sidebar-sticky">
     <ul class="nav flex-column">
       <li class="nav-item">
-
         <%= link_to "Films", admin_films_path, class: "nav-link" %>
         <ul class="children">
           <li class="nav-item">
@@ -14,14 +13,10 @@
         </ul>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          Reviews
-        </a>
+        <%= link_to "Reviews", admin_reviews_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          Users
-        </a>
+        <%= link_to "Users", admin_users_path, class: "nav-link" %>
       </li>
     </ul>
   </div>

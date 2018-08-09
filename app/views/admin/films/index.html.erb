@@ -19,7 +19,14 @@
         <% end %>
       </td>
       <td>
-        <%= link_to "Edit", edit_admin_film_path(film.id) %> | <%= link_to "Delete", admin_film_path(film.id), method: :delete, data:{confirm: "Are you sure ?"} %> | <a href="#">Review</a>
+        <%= link_to "Edit", edit_admin_film_path(film) %> |
+        <%= link_to "Delete", admin_film_path(film.id), method: :delete,
+        data: { confirm: "Are you sure ?" } %> |
+        <%= if film.review
+              link_to "Review", admin_review_path(film.review)
+            else
+              link_to "Write review", new_admin_film_review_path(film)
+            end %>
       </td>
       <td>
         <%= film.release_date %>
