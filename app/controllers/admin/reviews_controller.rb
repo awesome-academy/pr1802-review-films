@@ -16,8 +16,8 @@ class Admin::ReviewsController < AdminController
   def create
     @review = @film.build_review review_params.merge(user_id: current_user.id)
     if @review.save
-      flash[:notice] = "Review created success!"
-      redirect_to admin_review_path(@review)
+      flash[:info] = "Review created success!"
+      redirect_to admin_review_path @review
     else
       flash[:danger] = "Review creating has errors!"
       render :new
@@ -29,8 +29,8 @@ class Admin::ReviewsController < AdminController
 
   def update
     if @review.update review_params
-      flash[:notice] = "Review updated success!"
-      redirect_to admin_review_path(@review)
+      flash[:info] = "Review updated success!"
+      redirect_to admin_review_path @review
     else
       flash[:danger] = "Review updating has errors!"
       render :edit
@@ -39,7 +39,7 @@ class Admin::ReviewsController < AdminController
 
   def destroy
     @review.destroy
-    redirect_to admin_film_path(@review.film)
+    redirect_to admin_film_path @review.film
   end
 
   private

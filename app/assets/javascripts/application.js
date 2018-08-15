@@ -19,4 +19,5 @@
 //= require lity.min
 //= require owl.carousel.min
 //= require ckeditor/init
+//= require jquery.rateyo.min
 //= require_tree .

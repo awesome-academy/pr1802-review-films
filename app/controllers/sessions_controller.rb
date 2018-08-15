@@ -16,6 +16,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out
-    redirect_to root_url, notice: "Logout Success!"
+    redirect_to root_url, flash: {info: "Logout Success!"}
   end
 end

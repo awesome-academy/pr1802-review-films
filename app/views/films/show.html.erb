@@ -1,0 +1,173 @@
+<div class="film-main">
+  <div class="film-banner" style="background: url(<%=  @film.poster_url %>)"></div>
+  <div class="film-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumb">
+            <% if @film.thumbnail.present? %>
+            <%= image_tag @film.thumbnail_url %>
+            <% else %>
+            <%= image_tag "400x650.png" %>
+            <% end %>
+          </div>
+          <div class="film-info">
+            <h4>Movie info</h4>
+            <ul>
+              <li>
+                <span>Actor:</span><%= @film.actors %>
+              </li>
+              <li>
+                <span>Release Date:</span><%= @film.release_date %>
+              </li>
+              <li>
+                <span>Genres:</span>
+                <% @film.categories.each do |cat| %>
+                  <%= link_to cat.name, category_path(cat) %>
+                <% end %>
+              </li>
+              <li>
+                <span>Country:</span><%= @film.country %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="film-review">
+            <div class="film-review-left">
+              <h1><%= @film.name %></h1>
+              <ul class="genres">
+                <% @film.categories.each do |cat| %>
+                  <li>
+                  <%= link_to cat.name, category_path(cat) %>
+                  </li>
+                <% end %>
+              </ul>
+              <span class="duration"><%= @film.duration %> min</span>
+              <div class="rate" id="rate" data-rate="91">Rating:<span id="rateYo"></span><span id="count-rate">( <%= @film.raters.count %> )</span></div>
+              <ul class="share">
+                <li class="facebook">
+                  <a href="http://www.facebook.com/sharer.php?u=<%= request.original_url %>" class="post_share_facebook" onclick="javascript:window.open(this.href,
+                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=220,width=600');return false;">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                <li class="twitter">
+                  <a href="https://twitter.com/share?url=<%= request.original_url %>" onclick="javascript:window.open(this.href,
+                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=260,width=600');return false;" class="product_share_twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="googleplus">
+                  <a href="https://plus.google.com/share?url=<%= request.original_url %>" onclick="javascript:window.open(this.href,
+                      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                    <i class="fab fa-google-plus-g"></i>
+                  </a>
+                </li>
+              </ul>
+              <%= render("films/review") %>
+              <%= render("films/rate-form") %>
+            </div>
+            <div class="film-review-right">
+              <span>9.8</span>
+            </div>
+          </div>
+          <div class="film-story text-content">
+            <h3>
+              <i class="fas fa-book-open"></i>Movie story</h3>
+            <%= raw @film.introduction %>
+          </div>
+          <% if @film.trailer.present? %>
+          <div class="film-trailer">
+            <h3>
+              <i class="fas fa-video"></i> Movie trailer</h3>
+            <a href="<%= @film.trailer %>" data-lity class="trailer">
+              <% if @film.video_thumbnail.present? %>
+                <%= image_tag @film.video_thumbnail_url, class: "thumb-video" %>
+              <% else %>
+                <%= image_tag "650x400.png", class: "thumb-video" %>
+              <% end %>
+              <%= image_tag "play.png", class: "play" %>
+            </a>
+          </div>
+          <% end %>
+          <div class="film-related">
+            <h3>
+              <i class="far fa-thumbs-up"></i>Recommend movies</h3>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="rlt-film">
+                  <div class="thumb">
+                    <a href="#">
+                      <%= image_tag "review-item.jpg" %>
+                    </a>
+                  </div>
+                  <div class="info">
+                    <h3>
+                      <a href="#">Star Wars Ut enim ad minim veniam, quis nostrud exercit</a>
+                    </h3>
+                    <ul class="meta">
+                      <li>
+                        <i class="fas fa-archive"></i>
+                        <a href="#">Star war</a>
+                      </li>
+                      <li>
+                        Rating
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="rlt-film">
+                  <div class="thumb">
+                    <a href="#">
+                      <%= image_tag "review-item.jpg" %>
+                    </a>
+                  </div>
+                  <div class="info">
+                    <h3>
+                      <a href="#">Star Wars Ut enim ad minim veniam, quis nostrud exercit</a>
+                    </h3>
+                    <ul class="meta">
+                      <li>
+                        <i class="fas fa-archive"></i>
+                        <a href="#">Star war</a>
+                      </li>
+                      <li>
+                        Rating
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="rlt-film">
+                  <div class="thumb">
+                    <a href="#">
+                      <%= image_tag "review-item.jpg" %>
+                    </a>
+                  </div>
+                  <div class="info">
+                    <h3>
+                      <a href="#">Star Wars Ut enim ad minim veniam, quis nostrud exercit</a>
+                    </h3>
+                    <ul class="meta">
+                      <li>
+                        <i class="fas fa-archive"></i>
+                        <a href="#">Star war</a>
+                      </li>
+                      <li>
+                        Rating
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

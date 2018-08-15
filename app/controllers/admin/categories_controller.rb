@@ -9,7 +9,7 @@ class Admin::CategoriesController < AdminController
   def create
     @category = Category.new category_params
     if @category.save
-      flash[:notice] = "Category created !"
+      flash[:info] = "Category created !"
       redirect_to admin_categories_path
     else
       flash[:alert] = "Category creating error !"

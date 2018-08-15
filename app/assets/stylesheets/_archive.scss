@@ -1,141 +1,141 @@
 // REVIEW
 .archive-heading{
-    padding: 65px 0;
-    background: url('../images/review-archive.jpg');
-    background-size: cover;
+  padding: 65px 0;
+  background: url('../images/review-archive.jpg');
+  background-size: cover;
+  position: relative;
+  &::before{
+    content: '';
+    background: rgba(#000, 0.7);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  h2{
     position: relative;
-    &::before{
+    z-index: 1;
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 36px;
+    font-weight: bold;
+  }
+}
+.archive-main{
+  padding: 90px 0;
+  .review-item{
+    position: relative;
+    margin-bottom: 30px;
+
+    .info{
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 20px 15px;
+      h3{
+        font-size: 20px;
+        margin-bottom: 10px;
+        a{
+          color: #fff;
+          transition: 0.3s;
+          &:hover{
+            text-decoration: none;
+            color: rgba(#fff, 0.7)
+          }
+        }
+      }
+      .meta{
+        li{
+          list-style: none;
+          color: #fff;
+          display: inline-block;
+          margin-right: 10px;
+          font-weight: 300;
+          a{
+            color: #fff;
+          }
+          i{
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .thumb{
+      overflow: hidden;
+      position: relative;
+      img{
+        transition: all ease-in-out 0.3s;
+      }
+      &:before{
         content: '';
-        background: rgba(#000, 0.7);
+        background: linear-gradient(to bottom,rgba(0,0,0,0.1) 30%,#000000 100%);
         position: absolute;
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
-    }
-    h2{
-        position: relative;
         z-index: 1;
-        text-align: center;
-        text-transform: uppercase;
-        color: #fff;
-        font-size: 36px;
-        font-weight: bold;
+      }
     }
-}
-.archive-main{
-    padding: 90px 0;
-    .review-item{
-        position: relative;
-        margin-bottom: 30px;
-        
-        .info{
-            z-index: 1;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            padding: 20px 15px;
-            h3{
-                font-size: 20px;
-                margin-bottom: 10px;
-                a{
-                    color: #fff;
-                    transition: 0.3s;
-                    &:hover{
-                        text-decoration: none;
-                        color: rgba(#fff, 0.7)
-                    }
-                }
-            }
-            .meta{
-                li{
-                    list-style: none;
-                    color: #fff;
-                    display: inline-block;
-                    margin-right: 10px;
-                    font-weight: 300;
-                    a{
-                        color: #fff;
-                    }
-                    i{
-                        margin-right: 10px;
-                    }
-                }
-            }
+    &:hover{
+      .thumb{
+        img{
+          transform: scale(1.1);
         }
-        .thumb{
-            overflow: hidden;
-            position: relative;
-            img{
-                transition: all ease-in-out 0.3s;
-            }
-            &:before{
-                content: '';
-                background: linear-gradient(to bottom,rgba(0,0,0,0.1) 30%,#000000 100%);
-                position: absolute;
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                z-index: 1;
-            }
+      }
+    }
+  }
+  .film-item{
+    overflow: hidden;
+    margin-bottom: 30px;
+    .thumb{
+      width: 25%;
+      float: left;
+      padding-right: 10px;
+    }
+    .info{
+      width: 75%;
+      float: left;
+      padding-left: 10px;
+      .title{
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        a{
+          transition: 0.3s;
+        }
+        a:hover{
+          text-decoration: none;
+        }
+      }
+      .meta{
+        margin-bottom: 10px;
+        li{
+          display: inline-block;
+          margin-right: 20px;
+          i{
+            margin-right: 10px;
+          }
+          a{
+            color: $accent-color;
+          }
+        }
+      }
+      .readmore{
+        font-weight: 600;
+        display: block;
+        i{
+          margin-left: 8px;
+          font-size: 10px;
         }
         &:hover{
-            .thumb{
-                img{
-                    transform: scale(1.1);
-                }
-            }
+          text-decoration: none;
+          transform: translateX(10px);
         }
+      }
     }
-    .film-item{
-        overflow: hidden;
-        margin-bottom: 30px;
-        .thumb{
-            width: 25%;
-            float: left;
-            padding-right: 10px;
-        }
-        .info{
-            width: 75%;
-            float: left;
-            padding-left: 10px;
-            .title{
-                font-size: 24px;
-                font-weight: 600;
-                margin-bottom: 10px;
-                a{
-                    transition: 0.3s;
-                }
-                a:hover{
-                    text-decoration: none;
-                }
-            }
-            .meta{
-                margin-bottom: 10px;
-                li{
-                    display: inline-block;
-                    margin-right: 20px;
-                    i{
-                        margin-right: 10px;
-                    }
-                    a{
-                        color: $accent-color;
-                    }
-                }
-            }
-            .readmore{
-                font-weight: 600;
-                display: block;
-                i{
-                    margin-left: 8px;
-                    font-size: 10px;
-                }
-                &:hover{
-                    text-decoration: none;
-                    transform: translateX(10px);
-                }
-            }
-        }
-    }
+  }
 }

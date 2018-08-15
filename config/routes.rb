@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/", to: "users#index"
     resources :users
-    resources :films do
+    resources :films, except: [:show] do
       resources :reviews, only: [:new, :create]
     end
-    resources :categories
+    resources :categories, except: [:show, :new]
     resources :reviews, except: [:new, :create]
   end
   root "pages#home"
@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   resources :users
   get "signup", to: "users#new"
   post "signup", to: "users#create"
+
+  resources :films, only: [:show]
+  resources :ratings
+  resources :categories, only: [:show]
 end

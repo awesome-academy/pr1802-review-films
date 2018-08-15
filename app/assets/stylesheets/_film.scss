@@ -1,274 +1,289 @@
 .film-main{
-    position: relative;
+  position: relative;
 }
 .film-banner{
-    background: url('../images/film-banner.jpg');
-    background-size: cover;
-    min-height: 600px; 
+  //background: asset_url("film-banner.jpg");
+  background-size: cover;
+  min-height: 600px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  &:before{
+    content: '';
+    background: linear-gradient(to bottom,rgba(0,0,0,0.1) 30%,#000000 100%);
     position: absolute;
-    top: 0;
     width: 100%;
-    &:before{
-        content: '';
-        background: linear-gradient(to bottom,rgba(0,0,0,0.1) 30%,#000000 100%);
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-    }
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  display: flex;
+  align-items: flex-end;
+  padding: 90px 0;
+  .container{
     display: flex;
-    align-items: flex-end;
-    padding: 90px 0;
-    .container{
-        display: flex;
-    }
+  }
 }
 .film-wrapper{
-    padding-top: 300px;
-    .thumb{
-        margin-bottom: 30px;
+  padding-top: 300px;
+  .thumb{
+    margin-bottom: 30px;
+  }
+  .film-info{
+    h4{
+      font-size: 24px;
+      margin-bottom: 25px
     }
-    .film-info{
-        h4{
-            font-size: 24px;
-            margin-bottom: 25px
+    ul{
+      li{
+        list-style: none;
+        font-size: 16px;
+        margin-bottom: 15px;
+        font-weight: 300;
+        span{
+          font-weight: bold;
+          margin-right: 5px;
         }
-        ul{
-            li{
-                list-style: none;
-                font-size: 16px;
-                margin-bottom: 15px;
-                font-weight: 300;
-                span{
-                    font-weight: bold;
-                    margin-right: 5px;
-                }
-            }
-        }
-    }
-    .film-review{
-        margin-top: 40px;
-        overflow: hidden;
-        h1{
-            font-size: 36px;
-            color: #fff;
-            margin-bottom: 30px;
-        }
-        .genres{
-            display: inline-block;
+        a{
+          &:after{
+            content: ',';
+          }
+          &:last-child{
             &:after{
-                content: '|';
-                color: #fff;
+              content: none;
             }
-            li{
-                list-style: none;
-                display: inline-block;
-                &:after{
-                    content: ',';
-                    color: #fff;
-                }
-                &:last-child{
-                    &::after{
-                        content: ''
-                    }
-                }
-                a{
-                    font-size: 16px;
-                    color: #fff;
-                }
-            }
+          }
         }
-        .duration{
+      }
+    }
+  }
+  .film-review{
+    margin-top: 40px;
+    overflow: hidden;
+    h1{
+      font-size: 36px;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+    .genres{
+      display: inline-block;
+      &:after{
+        content: '|';
+        color: #fff;
+      }
+      li{
+        list-style: none;
+        display: inline-block;
+        &:after{
+          content: ',';
+          color: #fff;
+        }
+        &:last-child{
+          &::after{
+            content: ''
+          }
+        }
+        a{
+          font-size: 16px;
+          color: #fff;
+        }
+      }
+    }
+    .duration{
+      color: #fff;
+      font-size: 16px;
+    }
+    .rate{
+      margin-top: 20px;
+      display: block;
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .share{
+      display: inline;
+      li{
+        display: inline-block;
+        margin-right: 20px;
+        font-size: 18px;
+      }
+      .facebook{
+        a{
+          color: #4267B2;
+        }
+      }
+      .twitter{
+        a{
+          color: #1DA1F2;
+        }
+      }
+      .googleplus{
+        a{
+          color: #DB4437;
+        }
+      }
+      .pinterest{
+        a{
+          color: #BD081C;
+        }
+      }
+      .mail{
+        a{
+          color: $accent-color;
+        }
+      }
+    }
+  }
+  .film-story{
+    margin-top: 110px;
+    h3{
+      margin-bottom: 20px;
+      i{
+        margin-right: 20px;
+      }
+    }
+  }
+  .film-trailer{
+    margin-top: 40px;
+    h3{
+      margin-bottom: 20px;
+      i{
+        margin-right: 20px;
+      }
+    }
+  }
+  .film-related{
+    margin-top: 40px;
+    margin-bottom: 90px;
+    h3{
+      margin-bottom: 20px;
+      i{
+        margin-right: 20px;
+      }
+    }
+    .rlt-film{
+      position: relative;
+      margin-bottom: 30px;
+
+      .info{
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 20px 15px;
+        h3{
+          font-size: 20px;
+          margin-bottom: 10px;
+          a{
             color: #fff;
-            font-size: 16px;
-        }
-        .rate{
-            margin-top: 20px;
-            display: block;
-            color: #fff;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-        .share{
-            display: inline;
-            li{
-                display: inline-block;
-                margin-right: 20px;
-                font-size: 18px;
-            }
-            .facebook{
-                a{
-                    color: #4267B2;
-                }
-            }
-            .twitter{
-                a{
-                    color: #1DA1F2;
-                }
-            }
-            .googleplus{
-                a{
-                    color: #DB4437;
-                }
-            }
-            .pinterest{
-                a{
-                    color: #BD081C;
-                }
-            }
-            .mail{
-                a{
-                    color: $accent-color;
-                }
-            }
-        }
-    }
-    .film-story{
-        margin-top: 110px;
-        h3{
-            margin-bottom: 20px;
-            i{
-                margin-right: 20px;
-            }
-        }
-    }
-    .film-trailer{
-        margin-top: 40px;
-        h3{
-            margin-bottom: 20px;
-            i{
-                margin-right: 20px;
-            }
-        }
-    }
-    .film-related{
-        margin-top: 40px;
-        margin-bottom: 90px;
-        h3{
-            margin-bottom: 20px;
-            i{
-                margin-right: 20px;
-            }
-        }
-        .rlt-film{
-            position: relative;
-            margin-bottom: 30px;
-            
-            .info{
-                z-index: 1;
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                padding: 20px 15px;
-                h3{
-                    font-size: 20px;
-                    margin-bottom: 10px;
-                    a{
-                        color: #fff;
-                        transition: 0.3s;
-                        &:hover{
-                            text-decoration: none;
-                            color: rgba(#fff, 0.7)
-                        }
-                    }
-                }
-                .meta{
-                    li{
-                        list-style: none;
-                        color: #fff;
-                        display: inline-block;
-                        margin-right: 10px;
-                        font-weight: 300;
-                        a{
-                            color: #fff;
-                        }
-                        i{
-                            margin-right: 10px;
-                        }
-                    }
-                }
-            }
-            .thumb{
-                overflow: hidden;
-                position: relative;
-                img{
-                    transition: all ease-in-out 0.3s;
-                }
-                &:before{
-                    content: '';
-                    background: linear-gradient(to bottom,rgba(0,0,0,0.1) 30%,#000000 100%);
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    top: 0;
-                    left: 0;
-                    z-index: 1;
-                }
-            }
+            transition: 0.3s;
             &:hover{
-                .thumb{
-                    img{
-                        transform: scale(1.1);
-                    }
-                }
+              text-decoration: none;
+              color: rgba(#fff, 0.7)
             }
+          }
         }
+        .meta{
+          li{
+            list-style: none;
+            color: #fff;
+            display: inline-block;
+            margin-right: 10px;
+            font-weight: 300;
+            a{
+              color: #fff;
+            }
+            i{
+              margin-right: 10px;
+            }
+          }
+        }
+      }
+      .thumb{
+        overflow: hidden;
+        position: relative;
+        img{
+          transition: all ease-in-out 0.3s;
+        }
+        &:before{
+          content: '';
+          background: linear-gradient(to bottom,rgba(0,0,0,0.1) 30%,#000000 100%);
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          z-index: 1;
+        }
+      }
+      &:hover{
+        .thumb{
+          img{
+            transform: scale(1.1);
+          }
+        }
+      }
     }
+  }
 }
 .film-review-left{
-    width: 80%;
-    float: left;
+  width: 80%;
+  float: left;
 }
 .film-review-right{
-    width: 20%;
-    float: left;
-    width: 128px;
-    height: 128px;
-    background: url('../images/star.png') no-repeat center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    span{
-        color: #fff;
-        font-weight: bold;
-        font-size: 38px;
-    }
+  float: left;
+  width: 128px;
+  height: 128px;
+  background: asset_url("star.png") no-repeat center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span{
+    color: #fff;
+    font-weight: bold;
+    font-size: 38px;
+  }
 }
 
 .trailer{
-    position: relative;
-    display: block;
-    &:before{
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba(#000, 0.6);
+  position: relative;
+  display: block;
+  &:before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(#000, 0.6);
+  }
+  .play{
+    position: absolute;
+    top: calc(50% - 32px);
+    left: calc(50% - 32px);
+    transition: 0.3s;
+    &:hover{
+      opacity: 0.8;
     }
-    .play{
-        position: absolute;
-        top: calc(50% - 32px);
-        left: calc(50% - 32px);
-        transition: 0.3s;
-        &:hover{
-            opacity: 0.8;
-        }
-    }
-    .thumb-video{
-        width: 100%;
-    }
+  }
+  .thumb-video{
+    width: 100%;
+  }
 }
 .btn-quickview{
-    display: block;
-    font-weight: bold;
-    color: #FFDB42!important;
-    margin-top: 10px;
-    text-transform: capitalize;
-    &:hover{
-        color: #ffc107!important;
-    }
+  display: block;
+  font-weight: bold;
+  color: #FFDB42!important;
+  margin-top: 10px;
+  text-transform: capitalize;
+  &:hover{
+    color: #ffc107!important;
+  }
+}
+.btn-rate{
+  color: #fff;
+  &:hover{
+    color: $accent-color;
+  }
 }
