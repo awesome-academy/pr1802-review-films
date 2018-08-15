@@ -16,7 +16,7 @@ class Admin::UsersController < AdminController
     @user = User.new user_params
     if @user.save
       flash[:success] = "User create!"
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path @user
     else
       flash[:danger] = "User create error!"
       render :new
@@ -29,7 +29,7 @@ class Admin::UsersController < AdminController
   def update
     if @user.update user_params
       flash[:success] = "User updated!"
-      redirect_to admin_user_path(@user)
+      redirect_to admin_user_path @user
     else
       flash[:danger] = "User update error!"
       render :edit

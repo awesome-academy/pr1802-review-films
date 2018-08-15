@@ -44,6 +44,10 @@
         </ul>
       </div>
       <div class="block-section">
+        <h3>Duration</h3>
+        <%= f.number_field :duration, class: "form-control", min: 0, placeholder: "Minutes" %>
+      </div>
+      <div class="block-section">
         <h3>Country</h3>
         <%= f.text_field :country, class: "form-control",
           placeholder: "Enter movies country" %>

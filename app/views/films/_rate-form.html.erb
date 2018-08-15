@@ -1,0 +1,29 @@
+<% if user_signed_in? %>
+  <% if @film.raters.find_by(id: current_user.id).blank? %>
+    <a href="#" class="btn-rate" data-toggle="modal" data-target="#rate-wrapper">Rate this movie</a>
+    <div class="modal fade" id="rate-wrapper" tabindex="-1" role="dialog" aria-labelledby="rate-wrapperCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Rate this movie</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_for @rate do |f| %>
+          <div class="modal-body">
+            <div class="field">
+              <%= f.hidden_field :film_id, value: @film.id %>
+              <%= f.hidden_field :rate, id: "rate-value" %>
+              <div id="ratefilm"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <%= f.submit "submit", class: "btn btn-submit", id: "btn-rate" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>

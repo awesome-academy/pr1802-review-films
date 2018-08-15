@@ -26,7 +26,8 @@
               link_to "Review", admin_review_path(film.review)
             else
               link_to "Write review", new_admin_film_review_path(film)
-            end %>
+            end %> |
+        <%= link_to "View film", film_path(film.id) %>
       </td>
       <td>
         <%= film.release_date %>
