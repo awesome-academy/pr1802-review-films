@@ -45,7 +45,7 @@
       <div class="comments-wrapper">
         <% if @review.comments.exists? %>
           <h3 class="heading">
-            <%= pluralize @review.comments.count, t(".thought") %> <%= t ".on" %>
+            <%= pluralize @all_comments.count, t(".thought") %> <%= t ".on" %>
             "<%= @review.title %>"
           </h3>
         <% end %>
