@@ -3,7 +3,7 @@
   </div>
   <%= form_for [comment.commentable, comment], remote: true do |f| %>
     <%= f.text_area :content, class: "form-control",
-      placeholder: t(".put_comment_placeholder"), cols: "30", rows: "10",
+      placeholder: t(".put_comment_placeholder"), cols: "30", rows: "5",
       id: "#{comment.commentable_type}-#{comment.commentable_id}-textarea" %>
     <%= f.submit t(".Submit"), class: "btn btn-submit" %>
   <% end %>

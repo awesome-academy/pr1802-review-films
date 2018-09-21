@@ -18,6 +18,11 @@ class Review < ApplicationRecord
 
   scope :order_created_desc, -> {order created_at: :desc}
   scope :this_month, -> do
-    where("month(created_at) like ?", Time.now.month).limit Settings.reviews.reviews_limit
+    where("month(created_at) like ?", Time.now.month)
+      .limit Settings.reviews.reviews_limit
+  end
+
+  def all_comments_count
+    Comment.where(review_id: self.id).pluck(:id).count
   end
 end

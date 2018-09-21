@@ -136,7 +136,7 @@ ul{
 // Login -Signup
 .account{
   fieldset{
-    width: 500px;
+    width: 320px;
   }
   .form-wrapper{
     padding: 20px;
@@ -157,7 +157,7 @@ ul{
 //Category link show
 .cat-show-link{
   color: white;
-} 
+}
 
 #search-in-cat{
   position: relative;
@@ -191,4 +191,22 @@ ul{
 .social-btns{
   display: flex;
   justify-content: center;
+}
+
+.collapsing {
+  -webkit-transition: none;
+  transition: none;
+  display: none;
+}
+
+.reply-form {
+  margin: 20px 0 0 80px;
+  textarea {
+    margin-bottom: 10px;
+  }
+}
+
+.time_ago_in_words {
+  font-style: italic;
+  font-size: 12px;
 }

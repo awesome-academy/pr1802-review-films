@@ -10,9 +10,7 @@ class ReviewsController < ApplicationController
   end
 
   private
-
   def find_review
-    film = Film.find_by_id params[:film_id]
-    @review = film.review
+    @review = Review.includes(:comments).find_by film_id: params[:film_id]
   end
 end

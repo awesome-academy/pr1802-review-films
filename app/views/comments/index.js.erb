@@ -1,0 +1,17 @@
+$('#Comment-<%= @commentable.id %>-comments-ul').html('<%= escape_javascript(render partial: "comments/comment", collection: @comments.order_created_desc.preload(:comments).to_a) %>');
+$('#Comment-<%= @commentable.id %>-comments-ul').addClass('show');
+$('#toggle_replies_Comment_<%= @commentable.id %>').replaceWith('<%= escape_javascript(render partial: "hide_replies", locals: {comment: @commentable}) %>');
+
+$('#Comment-<%= @commentable.id %>-comments-ul').on('shown.bs.collapse', function(e){
+  if ($(this).is(e.target)) {
+    e.stopPropagation();
+    $('#toggle_replies_Comment_<%= @commentable.id %> a').text('<%= t ".hide" %>');
+  }
+});
+
+$('#Comment-<%= @commentable.id %>-comments-ul').on('hidden.bs.collapse', function(e){
+  if ($(this).is(e.target)) {
+    e.stopPropagation();
+    $('#toggle_replies_Comment_<%= @commentable.id %> a').text('<%= t ".show_replies", count: @commentable.all_comments.count %>');
+  }
+});

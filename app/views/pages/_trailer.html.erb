@@ -4,7 +4,7 @@
       <% if film.video_thumbnail.present? %>
         <%= image_tag film.video_thumbnail_url, class: "thumb-video" %>
       <% else %>
-        <%= image_tag "650x400.png" %>
+        <%= image_tag "trailer.jpg", class: "thumb-video" %>
       <% end %>
       <%= image_tag "play.png", class: "play" %>
     </a>
