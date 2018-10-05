@@ -4,10 +4,10 @@
       <a href="#"><img src="http://via.placeholder.com/100x100" alt=""></a>
     </div>
     <div class="info">
-      <h3><%= link_to review.title, review_path(review) %></h3>
+      <h3><%= link_to review.title, film_review_path(review) %></h3>
       <ul>
         <li>
-          <i class="fas fa-film"></i><a href="#"><%= review.film.name %></a>
+          <i class="fas fa-film"></i><%= link_to review.film.name, film_path(review.film) %>
         </li>
         <li>
           <i class="far fa-clock"></i><%= review.created_at %>

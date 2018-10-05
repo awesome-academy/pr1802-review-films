@@ -15,4 +15,9 @@ class Review < ApplicationRecord
 
   scope :find_by_film_ids, ->(films) {where film_id: films}
   scope :find_by_comment, ->(comment) {where id: comment.review_id}
+
+  scope :order_created_desc, -> {order created_at: :desc}
+  scope :this_month, -> do
+    where("month(created_at) like ?", Time.now.month).limit Settings.reviews.reviews_limit
+  end
 end

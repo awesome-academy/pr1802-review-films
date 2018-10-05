@@ -16,6 +16,7 @@ films:
   trailer_limit: 5
 reviews:
   per_page: 10
+  reviews_limit: 4
 email_from: "awesome.academy.test@gmail.com"
 user:
   name:

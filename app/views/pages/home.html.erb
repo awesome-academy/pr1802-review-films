@@ -93,7 +93,7 @@
           <% if @this_month_films.first %>
             <a href="<%= @this_month_films.first.trailer %>"
               data-lity class="trailer">
-              <% if @this_month_films.first.thumbnail.present? %>
+              <% if @this_month_films.first.video_thumbnail.present? %>
                 <%= image_tag @this_month_films.first.video_thumbnail_url,
                   class: "thumb-video"  %>
               <% else %>
@@ -147,7 +147,7 @@
         <% end %>
       </h3>
       <div class="row">
-        <%= render partial: "review", collection: @this_month_reviews,
+        <%= render partial: "review", collection: @this_month_reviews.order_created_desc,
           as: :review %>
       </div>
     </div>

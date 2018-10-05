@@ -5,7 +5,6 @@ class PagesController < ApplicationController
 
     @this_month_films = @films.this_month
 
-    temp = @this_month_films.pluck :id
-    @this_month_reviews = Review.find_by_film_ids temp
+    @this_month_reviews = Review.find_by_film_ids(@films.pluck :id).this_month
   end
 end

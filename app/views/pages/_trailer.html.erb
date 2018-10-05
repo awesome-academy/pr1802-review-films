@@ -1,7 +1,11 @@
 <div class="col-md-3 col-sm-6 col-small">
   <div class="trailer-item">
     <a href="<%= film.trailer %>" data-lity class="trailer">
-      <%= image_tag film.video_thumbnail_url, class: "thumb-video"  %>
+      <% if film.video_thumbnail.present? %>
+        <%= image_tag film.video_thumbnail_url, class: "thumb-video" %>
+      <% else %>
+        <%= image_tag "650x400.png" %>
+      <% end %>
       <%= image_tag "play.png", class: "play" %>
     </a>
   </div>
