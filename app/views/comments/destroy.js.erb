@@ -3,4 +3,24 @@
 <% else %>
   $('#<%= @comment.commentable_type %>-<%= @comment.commentable_id %>-errors').empty();
   $('#<%= @comment.commentable_type %>-<%= @comment.id %>-comments-li').remove();
+  $('.review_comments_count').html(function(i, html){
+    return html.replace(/\d+/g, '<%= @comment.review.all_comments_count %>');
+  })
+  <% all_comments = @comment.parent_comments << @comment %>
+  <% all_comments.each do |comment| %>
+    <% if comment.commentable.is_a? Comment %>
+      <% if comment.commentable.all_comments.count > 0 %>
+        $('#Comment-<%= comment.commentable.id %>-comments-ul').on('hidden.bs.collapse', function(e){
+          e.stopPropagation();
+          $('#toggle_replies_Comment_<%= comment.commentable.id %> a').text('<%= t ".show_replies", count: comment.commentable.all_comments.count %>');
+        });
+        $('#Comment-<%= comment.commentable.id %>-comments-ul').on('shown.bs.collapse', function(e){
+          e.stopPropagation();
+          $('#toggle_replies_Comment_<%= comment.commentable.id %> a').text('<%= t ".hide" %>');
+        });
+      <% else %>
+        $('#toggle_replies_Comment_<%= comment.commentable.id %>').empty();
+      <% end %>
+    <% end %>
+  <% end %>
 <% end %>

@@ -1,0 +1,1 @@
+<span id="toggle_replies_Comment_<%= comment.commentable.id %>"><%= link_to t(".show_replies", count: comment.commentable.all_comments.count), comment_comments_path(comment.commentable), remote: true %></span>

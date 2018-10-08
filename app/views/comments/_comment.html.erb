@@ -8,25 +8,32 @@
       <%= raw comment.content %>
     </div>
     <div class="meta">
+      <span class="time_ago_in_words">
+        <%= t "ago", time: time_ago_in_words(comment.created_at) %>
+      </span>
       <% if user_signed_in? %>
-        <a class="reply" type="button" data-toggle="collapse" href="#Comment-<%= comment.id %>-form" role="button" aria-expanded="false" aria-controls="Comment-<%= comment.id %>-form">
-          <%= t ".Reply" %>
+        <a class="reply" data-toggle="collapse" href="#Comment-<%= comment.id %>-form" role="button" aria-expanded="false" aria-controls="Comment-<%= comment.id %>-form">
+          <%= t ".reply" %>
         </a>
         <% if current_user.admin? %>
           <%= link_to t("delete"), comment_path(comment), method: :delete,
             remote: true, data: {confirm: t("delete_confirm")} %>
         <% end %>
       <% end %>
+      <span id="toggle_replies_Comment_<%= comment.id %>">
+        <% if comment.commentable %>
+          <% if comment.comments.present? %>
+            <%= link_to t(".show_replies", count: comment.all_comments.count), comment_comments_path(comment), remote: true %>
+          <% end %>
+        <% end %>
+      </span>
     </div>
   </div>
-  <% if comment.commentable.content.present? %>
-    <ul class="children" id="Comment-<%= comment.id %>-comments-ul">
-      <% if comment.comments.exists? %>
-        <%= render partial: "comments/comment", collection: comment.comments %>
-      <% end %>
-    </ul>
-  <% end %>
   <% if user_signed_in? %>
     <%= render partial: 'comments/reply_form', locals: {comment: Comment.new(user_id: current_user.id, commentable: comment)} %>
+  <% end %>
+  <% if comment.commentable %>
+    <ul class="children collapse show" id="Comment-<%= comment.id %>-comments-ul">
+    </ul>
   <% end %>
 </li>

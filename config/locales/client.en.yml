@@ -27,15 +27,37 @@ en:
       interval: "Interval"
       filter: "Filter"
   comments:
+    index:
+      hide: "Hide replies"
+      show_replies:
+        one: "Show 1 reply"
+        other: "Show %{count} replies"
+    load_replies:
+      show_replies:
+        one: "Show 1 reply"
+        other: "Show %{count} replies"
+    hide_replies:
+      hide: "Hide replies"
     create:
       comment_create: "Your comment was posted !"
+      show_replies:
+        one: "Show 1 reply"
+        other: "Show %{count} replies"
+      hide: "Hide replies"
     update:
       comment_update: "Your comment is updated !"
     destroy:
       comment_destroy: "Your comment is deleted !"
+      show_replies:
+        one: "Show 1 reply"
+        other: "Show %{count} replies"
+      hide: "Hide replies"
     comment:
-      Edit: "Edit"
-      Reply: "Reply"
+      edit: "Edit"
+      reply: "Reply"
+      show_replies:
+        one: "Show 1 reply"
+        other: "Show %{count} replies"
     comment_form:
       put_comment_placeholder: "Put comment here"
       Submit: "Submit"
@@ -102,7 +124,6 @@ en:
     show:
       comment: "comment"
       share: "Share"
-      thought: "thought"
       "on": "on"
     review:
       written_at: "Written at"

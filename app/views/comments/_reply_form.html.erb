@@ -1,7 +1,7 @@
-<div class="comment-form collapse" id="<%= "#{comment.commentable_type}-#{comment.commentable_id}-form" %>">
+<div class="reply-form collapse" id="<%= "#{comment.commentable_type}-#{comment.commentable_id}-form" %>">
   <div id="<%= comment.commentable_type %>-<%= comment.commentable_id %>-errors">
   </div>
-  <%= form_for [comment.commentable, comment], remote: true do |f| %>
+  <%= form_for [comment.commentable, comment], remote: true, html: {id: "new_reply_comment_#{comment.commentable_id}"} do |f| %>
     <%= f.text_area :content, class: "form-control",
       placeholder: t(".put_comment_placeholder"), cols: "20", rows: "3",
       id: "#{comment.commentable_type}-#{comment.commentable_id}-textarea" %>

@@ -1,7 +1,14 @@
 class CommentsController < ApplicationController
-  before_action :logged_in_user
+  before_action :logged_in_user, only: [:destroy]
   before_action :find_commentable
-  before_action :find_comment, only: [:destroy]
+  before_action :find_comment, only: [:index, :destroy]
+
+  def index
+    @comments = @commentable.comments
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def create
     @comment = @commentable.comments

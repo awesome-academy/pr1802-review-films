@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   include Nested
   belongs_to :user
   belongs_to :commentable, polymorphic: true
-  belongs_to :review, optional: true, foreign_key: "review_id"
+  belongs_to :review, optional: true
   has_many :comments, as: :commentable, dependent: :destroy
 
   validates_presence_of :content
@@ -28,11 +28,10 @@ class Comment < ApplicationRecord
 
   private
   def add_review_id
-    if self.commentable.is_a? Review
-      self.review_id = self.commentable.id
+    if commentable.is_a? Review
+      self.update review_id: commentable.id
     else
-      self.review_id = self.commentable.review_id
+      self.update review_id: commentable.review_id
     end
-    self.save
   end
 end

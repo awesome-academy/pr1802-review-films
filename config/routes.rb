@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   end
 
   resources :comments, only: [:destroy] do
-    resources :comments, only: [:create]
+    resources :comments, only: [:index, :create]
   end
   resources :ratings
   resources :categories, only: [:show]

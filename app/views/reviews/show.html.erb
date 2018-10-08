@@ -22,13 +22,12 @@
             <i class="fas fa-film"></i>
             <%= link_to @review.film.name, @review.film %>
           </li>
-          <% if @review.comments.exists? %>
-            <li>
+          <% if @review.comments.present? %>
+            <li class="review_comments_count">
               <i class="fas fa-comments"></i>
-              <%= pluralize @review.comments.count, t(".comment") %>
+              <%= pluralize @review.all_comments_count, t(".comment") %>
             </li>
           <% end %>
-          <li class="hashtag"><i class="fas fa-tags"></i><a href="#">#tag1</a><a href="#">#tag1</a><a href="#">#tag1</a></li>
         </ul>
       </div>
     </div>
@@ -43,18 +42,20 @@
         <%= render partial: "shared/social_share" %>
       </div>
       <div class="comments-wrapper">
-        <% if @review.comments.exists? %>
-          <h3 class="heading">
-            <%= pluralize @review.all_comments.count, t(".thought") %> <%= t ".on" %>
+        <% if @review.comments.present? %>
+          <h3 class="review_comments_count heading">
+            <%= pluralize @review.all_comments_count, t(".comment") %> <%= t ".on" %>
             "<%= @review.title %>"
           </h3>
         <% end %>
         <div class="comments-list">
-          <ul id="Review-<%= @review.id%>-comments-ul">
-            <% if @review.comments.exists? %>
-              <%= render partial: 'comments/comment', collection: @review.comments %>
+          <ul id="Review-<%= @review.id %>-comments-ul">
+            <% if @review.comments %>
+              <% @comments = @review.comments.order_created_desc.paginate page: params[:page], per_page: Settings.reviews.comments.per_page %>
+              <%= render partial: 'comments/comment', collection: @comments.preload(:comments).to_a %>
             <% end %>
           </ul>
+          <%= will_paginate @comments if @comments %>
         </div>
         <%= if user_signed_in?
               render partial: "comments/comment_form",
