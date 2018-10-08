@@ -34,6 +34,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
   gem 'dotenv-rails', '~> 2.5'
+  gem 'mechanize', '~> 2.7', '>= 2.7.6'
 end
 
 group :development do

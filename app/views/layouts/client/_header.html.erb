@@ -21,7 +21,7 @@
             <%= form_tag films_path, method: :get do %>
               <%= select_tag :search_option,
                 options_for_select(%w(name actors directors),
-                selected: params[:search_option]), prompt: "Choose...",
+                selected: params[:search_option]), prompt: "...",
                 class: "custom-select" %>
               <%= text_field_tag :search_content, params[:search_content],
                 class: "form-control input-field", id: "search-field" %>

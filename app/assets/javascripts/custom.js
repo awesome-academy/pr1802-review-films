@@ -79,10 +79,19 @@ $(document).on("turbolinks:load", function() {
     })
   });
 
-  // Autocomplete
+  // Search autocomplete
+  search_autocomplete($('#search_option option:selected').text());
+  $("#search_option").on('change', function(){
+    search_autocomplete($('#search_option option:selected').text());
+  });
+});
+
+// Search autocomplete callback function
+function search_autocomplete(type) {
+  search_url = '/films.json?search_option='+ type +'&search_content=';
   $( "#search-field" ).autocomplete({
     source: function (request, response) {
-      $.getJSON("/films.json?search_content=" + request.term, function (data) {
+      $.getJSON(search_url + request.term, function (data) {
         response($.map(data.films, function (value, key) {
           return {
             value: value.title,
@@ -103,4 +112,4 @@ $(document).on("turbolinks:load", function() {
       .append( markup.join('') )
       .appendTo( ul );
   };
-});
+}

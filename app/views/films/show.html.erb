@@ -10,17 +10,17 @@
             <% if @film.thumbnail.present? %>
               <%= image_tag @film.thumbnail_url %>
             <% else %>
-              <%= image_tag "400x650.png" %>
+              <%= image_tag "1.jpg" %>
             <% end %>
           </div>
           <div class="film-info">
             <h4><%= t ".movie_info" %></h4>
             <ul>
               <li>
-                <span><%= t ".actors" %></span><%= @film.actors %>
+                <span><%= t ".actors" %></span><%= @film.actors.pluck(:name).join(", ") %>
               </li>
               <li>
-                <span><%= t ".directors" %></span><%= @film.directors %>
+                <span><%= t ".directors" %></span><%= @film.directors.pluck(:name).join(", ") %>
               </li>
               <li>
                 <span><%= t ".released_date" %></span><%= @film.release_date %>
@@ -75,7 +75,7 @@
                 <% if @film.video_thumbnail.present? %>
                   <%= image_tag @film.video_thumbnail_url, class: "thumb-video" %>
                 <% else %>
-                  <%= image_tag "650x400.png", class: "thumb-video" %>
+                  <%= image_tag "trailer.jpg", class: "thumb-video" %>
                 <% end %>
                 <%= image_tag "play.png", class: "play" %>
               </a>
