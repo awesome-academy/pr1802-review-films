@@ -19,7 +19,6 @@ reviews:
   reviews_limit: 4
   comments:
     per_page: 6
-email_from: "awesome.academy.test@gmail.com"
 user:
   name:
     length:

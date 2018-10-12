@@ -3,7 +3,7 @@
     <% @films.order_created_desc.each do |film| %>
       <div class="item film-item">
         <div class="thumb">
-        <%= image_tag film.thumbnail.present? ? film.thumbnail_url : "1.jpg" %>
+          <%= image_tag film.thumbnail.present? ? film.thumbnail_url : "1.jpg" %>
         </div>
         <div class="info">
           <div class="rating">
@@ -21,135 +21,138 @@
           </ul>
           <div class="actors">
             <span><%= t ".actors" %></span>
-            <%= film.actors.present? ? film.actors : t(".unknown") %>
+            <% if film.actors.present? %>
+              <%= film.actors.pluck(:name).join(", ") %>
+            <% else %>
+              <%= t ".unknown" %>
+            <% end %>
           </div>
         </div>
       </div>
     <% end %>
   </div>
-  </div>
-  <div class="film-tabs">
-    <div class="container">
-      <h3 class="film-heading"><%= t ".spotlight_this_month" %>
-        <%= link_to films_path do %>
-          <%= t ".see_all_movies" %><i class="fas fa-arrow-right"></i>
-        <% end %>
-      </h3>
-      <div class="film-content">
-        <nav>
-          <div class="nav" id="nav-tab" role="tablist">
-            <a class="nav-item  active" id="nav-home-tab" data-toggle="tab"
-              href="#nav-1" role="tab" aria-controls="nav-1"
-              aria-selected="true"><%= t ".recently_release" %>
-            </a>
-            <a class="nav-item " id="nav-prt ofile-tab" data-toggle="tab"
-              href="#nav-2" role="tab" aria-controls="nav-2"
-              aria-selected="false"><%= t ".top_rated" %>
-            </a>
-            <a class="nav-item " id="nav-contact-tab" data-toggle="tab"
-              href="#nav-3" role="tab" aria-controls="nav-3"
-              aria-selected="false"><%= t ".coming_soon" %>
-            </a>
+</div>
+<div class="film-tabs">
+  <div class="container">
+    <h3 class="film-heading"><%= t ".spotlight_this_month" %>
+      <%= link_to films_path do %>
+        <%= t ".see_all_movies" %><i class="fas fa-arrow-right"></i>
+      <% end %>
+    </h3>
+    <div class="film-content">
+      <nav>
+        <div class="nav" id="nav-tab" role="tablist">
+          <a class="nav-item  active" id="nav-home-tab" data-toggle="tab"
+            href="#nav-1" role="tab" aria-controls="nav-1"
+            aria-selected="true"><%= t ".recently_release" %>
+          </a>
+          <a class="nav-item " id="nav-prt ofile-tab" data-toggle="tab"
+            href="#nav-2" role="tab" aria-controls="nav-2"
+            aria-selected="false"><%= t ".top_rated" %>
+          </a>
+          <a class="nav-item " id="nav-contact-tab" data-toggle="tab"
+            href="#nav-3" role="tab" aria-controls="nav-3"
+            aria-selected="false"><%= t ".coming_soon" %>
+          </a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-1" role="tabpanel"
+          aria-labelledby="nav-1-tab">
+          <div class="row">
+            <%= render partial: "film",
+              collection: @this_month_films.recently_released.order_released_desc,
+              as: :film %>
           </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-1" role="tabpanel"
-            aria-labelledby="nav-1-tab">
-            <div class="row">
-              <%= render partial: "film",
-                collection: @this_month_films.recently_released.order_released_desc,
-                as: :film %>
-            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-2" role="tabpanel"
+          aria-labelledby="nav-2-tab">
+          <div class="row">
+            <%= render partial: "film",
+              collection: @this_month_films.top_rated,
+              as: :film %>
           </div>
-          <div class="tab-pane fade" id="nav-2" role="tabpanel"
-            aria-labelledby="nav-2-tab">
-            <div class="row">
-              <%= render partial: "film",
-                collection: @this_month_films.top_rated,
-                as: :film %>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-3" role="tabpanel"
-            aria-labelledby="nav-3-tab">
-            <div class="row">
-              <%= render partial: "film",
-                collection: @this_month_films.coming_soon,
-                as: :film %>
-            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-3" role="tabpanel"
+          aria-labelledby="nav-3-tab">
+          <div class="row">
+            <%= render partial: "film",
+              collection: @this_month_films.coming_soon,
+              as: :film %>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="film-trailers">
-    <div class="container">
-      <h3 class="film-heading"><%= t ".trailers_this_month" %>
-        <%= link_to films_path do %>
-          <%= t ".see_all_movies" %><i class="fas fa-arrow-right"></i>
-        <% end %>
-      </h3>
-      <div class="film-content">
-        <div class="trailer-item">
-          <% if @this_month_films.first %>
-            <a href="<%= @this_month_films.first.trailer %>"
-              data-lity class="trailer">
-              <% if @this_month_films.first.video_thumbnail.present? %>
-                <%= image_tag @this_month_films.first.video_thumbnail_url,
-                  class: "thumb-video"  %>
-              <% else %>
-                <%= image_tag "400x650.png" %>
-              <% end %>
-              <%= image_tag "play.png", class: "play" %>
-              <div class="info-trailer">
-                <div class="film-thumb">
-                  <%= link_to film_path @this_month_films.first do %>
-                    <% if @this_month_films.first.thumbnail_url %>
-                      <% image_tag @this_month_films.first.thumbnail_url %>
-                    <% else %>
-                      <img src="http://via.placeholder.com/100x100" alt="">
-                    <% end %>
+</div>
+<div class="film-trailers">
+  <div class="container">
+    <h3 class="film-heading"><%= t ".trailers_this_month" %>
+      <%= link_to films_path do %>
+        <%= t ".see_all_movies" %><i class="fas fa-arrow-right"></i>
+      <% end %>
+    </h3>
+    <div class="film-content">
+      <div class="trailer-item">
+        <% if @this_month_films.first %>
+          <a href="<%= @this_month_films.first.trailer %>"
+            data-lity class="trailer">
+            <% if @this_month_films.first.video_thumbnail.present? %>
+              <%= image_tag @this_month_films.first.video_thumbnail_url,
+                class: "thumb-video"  %>
+            <% else %>
+              <%= image_tag "film-trailer-bg.jpg" %>
+            <% end %>
+            <%= image_tag "play.png", class: "play" %>
+            <div class="info-trailer">
+              <div class="film-thumb">
+                <%= link_to film_path @this_month_films.first do %>
+                  <% if @this_month_films.first.thumbnail_url %>
+                    <% image_tag @this_month_films.first.thumbnail_url %>
+                  <% else %>
+                    <% image_tag "film-thumb.jpg"%>
                   <% end %>
-                </div>
-                <div class="film-info">
-                  <h3 class="title">
-                    <%= link_to @this_month_films.first.name,
-                      film_path(@this_month_films.first) %>
-                  </h3>
-                  <ul class="genres">
-                    <% @this_month_films.first.categories.each do |category| %>
-                      <li>
-                        <%= link_to category.name, category_path(category) %>
-                      </li>
-                    <% end %>
-                  </ul>
-                </div>
-                <div class="mark">
-                  <span>
-                  <%= @this_month_films.first.average_ratings if @this_month_films.first.average_ratings %>
-                  </span>
-                </div>
+                <% end %>
               </div>
-            </a>
-          <% end %>
-        </div>
-        <div class="row">
-          <%= render partial: "trailer", collection: @this_month_films[1..-1],
-            as: :film %>
-        </div>
+              <div class="film-info">
+                <h3 class="title">
+                  <%= link_to @this_month_films.first.name,
+                    film_path(@this_month_films.first) %>
+                </h3>
+                <ul class="genres">
+                  <% @this_month_films.first.categories.each do |category| %>
+                    <li>
+                      <%= link_to category.name, category_path(category) %>
+                    </li>
+                  <% end %>
+                </ul>
+              </div>
+              <div class="mark">
+                <span>
+                <%= @this_month_films.first.average_ratings if @this_month_films.first.average_ratings %>
+                </span>
+              </div>
+            </div>
+          </a>
+        <% end %>
+      </div>
+      <div class="row">
+        <%= render partial: "trailer", collection: @this_month_films[1..-1],
+          as: :film %>
       </div>
     </div>
   </div>
-  <div class="film-reviews">
-    <div class="container">
-      <h3 class="film-heading"><%= t ".reviews_this_month" %>
-        <%= link_to reviews_path do %>
-          <%= t ".see_all_reviews" %><i class="fas fa-arrow-right"></i>
-        <% end %>
-      </h3>
-      <div class="row">
-        <%= render partial: "review", collection: @this_month_reviews.order_created_desc,
-          as: :review %>
-      </div>
+</div>
+<div class="film-reviews">
+  <div class="container">
+    <h3 class="film-heading"><%= t ".reviews_this_month" %>
+      <%= link_to reviews_path do %>
+        <%= t ".see_all_reviews" %><i class="fas fa-arrow-right"></i>
+      <% end %>
+    </h3>
+    <div class="row">
+      <%= render partial: "review", collection: @this_month_reviews.order_created_desc,
+        as: :review %>
     </div>
   </div>
 </div>

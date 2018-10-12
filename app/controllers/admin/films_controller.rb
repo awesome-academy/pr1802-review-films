@@ -1,5 +1,6 @@
 class Admin::FilmsController < AdminController
   before_action :find_film, only: [:edit, :update, :show, :destroy]
+
   def index
     @films = Film.includes(:categories, :review).paginate page: params[:page],
       per_page: Settings.admin.films.per_page
@@ -45,10 +46,12 @@ class Admin::FilmsController < AdminController
   private
 
   def film_params
-    params.require(:film).permit(:name, :introduction, :poster,
+    params.require(:film).permit(
+      :name, :introduction, :poster,
       :poster_cache, :thumbnail, :thumbnail_cache, :trailer, :video_thumbnail,
-      :video_thumbnail_cache, :actors, :directors, :country, :release_date,
-      :duration, :status, category_ids: [])
+      :video_thumbnail_cache, :country, :release_date,
+      :duration, :status, category_ids: [], actor_ids: [], director_ids: []
+    )
   end
 
   def find_film

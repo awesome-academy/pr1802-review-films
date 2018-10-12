@@ -1,7 +1,7 @@
 <div class="col-md-3">
   <div class="item film-item">
     <div class="thumb">
-    <%= image_tag film.thumbnail.present? ? film.thumbnail_url : "1.jpg" %>
+      <%= image_tag film.thumbnail.present? ? film.thumbnail_url : "1.jpg" %>
     </div>
     <div class="info">
       <div class="rating">
@@ -11,7 +11,7 @@
       <h3>
         <%= link_to film.name, film_path(film) %></a>
       </h3>
-      <ul class="genre">              
+      <ul class="genre">
         <% film.categories.each do |category| %>
           <li><%= link_to category.name, category_path(category) %></li>
         <% end %>
@@ -19,7 +19,11 @@
       </ul>
       <div class="actors">
         <span><%= t ".actors" %></span>
-        <%= film.actors.present? ? film.actors : t(".unknown")%>
+        <% if film.actors.present? %>
+          <%= film.actors.pluck(:name).join(', ') %>
+        <% else %>
+          <%= t ".unknown" %>
+        <% end %>
       </div>
     </div>
   </div>

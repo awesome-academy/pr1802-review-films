@@ -21,13 +21,11 @@
       </div>
       <div class="block-section">
         <h3><%= t ".movie_actors" %></h3>
-        <%= f.text_field :actors, class: "form-control",
-          placeholder: t(".movie_actors_placeholder") %>
+        <%= f.select :actor_ids, options_from_collection_for_select(Person.order_name_asc, :id, :name, @film.actor_ids), {}, {multiple: true} %>
       </div>
       <div class="block-section">
         <h3><%= t ".movie_directors" %></h3>
-        <%= f.text_field :directors, class: "form-control",
-          placeholder: t(".movie_directors_placeholder") %>
+        <%= f.select :director_ids, options_from_collection_for_select(Person.order_name_asc, :id, :name, @film.director_ids), {}, {multiple: true} %>
       </div>
     </div>
     <div class="col-md-4">
